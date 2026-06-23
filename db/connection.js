@@ -16,4 +16,5 @@ const pool = mysql.createPool({
 });
 
 export default pool; // Exportamos la conexión para que el Modelo pueda usarla
- b 
+
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
