@@ -1,41 +1,39 @@
 // models/localidadModel.js
-import pool from '../db/connection.js'; // Importamos nuestra conexión a Railway
-
+import pool from '../db/connection.js';
 
 const LocalidadModel = {
-  // 1. LEER (READ): Obtener todas las localidades
+  // READ: Obtener todas las localidades ordenadas por ID
   getAll: async () => {
-    // Ejecutamos la consulta SQL
-    const [rows] = await pool.query('SELECT * FROM Localidad');
-    return rows; // Retornamos los datos
+    const [rows] = await pool.query('SELECT * FROM localidad ORDER BY ID_LOCALIDAD');
+    return rows;
   },
 
-
-  // 2. CREAR (CREATE): Insertar una nueva localidad
-  create: async (Cod_Localidad, Localidad) => {
-    const query = 'INSERT INTO Localidad (Cod_Localidad, Localidad) VALUES (?, ?)';
-    // Los signos de interrogación (?) son medidas de seguridad contra inyecciones SQL
-    const [result] = await pool.query(query, [Cod_Localidad, Localidad]);
+  // CREATE: Insertar una nueva localidad
+  create: async (nombre) => {
+    const [result] = await pool.query(
+      'INSERT INTO localidad (NOMBRE_LOCALIDAD) VALUES (?)',
+      [nombre]
+    );
     return result;
   },
 
-
-// 3. ACTUALIZAR (UPDATE): Modificar una localidad existente
-update: async (Id_Localidad, Cod_Localidad, Localidad) => {
-    // Usamos los signos de interrogación (?) por seguridad contra inyecciones SQL
-    const query = 'UPDATE Localidad SET Cod_Localidad = ?, Localidad = ? WHERE Id_Localidad = ?';
-    const [result] = await pool.query(query, [Cod_Localidad, Localidad, Id_Localidad]);
+  // UPDATE: Modificar una localidad existente
+  update: async (id, nombre) => {
+    const [result] = await pool.query(
+      'UPDATE localidad SET NOMBRE_LOCALIDAD = ? WHERE ID_LOCALIDAD = ?',
+      [nombre, id]
+    );
     return result;
   },
 
-
-  // 4. BORRAR (DELETE): Eliminar una localidad
-  delete: async (Id_Localidad) => {
-    const query = 'DELETE FROM Localidad WHERE Id_Localidad = ?';
-    const [result] = await pool.query(query, [Id_Localidad]);
+  // DELETE: Eliminar una localidad
+  delete: async (id) => {
+    const [result] = await pool.query(
+      'DELETE FROM localidad WHERE ID_LOCALIDAD = ?',
+      [id]
+    );
     return result;
-  }
+  },
 };
-
 
 export default LocalidadModel;
