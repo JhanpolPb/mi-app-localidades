@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body style={{ margin: 0, background: '#f4f6fb' }}>
         <nav style={{
-          background: '#1a1a2e',
+          background: '#000000',
           padding: '0 24px',
           display: 'flex',
           alignItems: 'center',
