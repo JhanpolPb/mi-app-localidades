@@ -21,51 +21,57 @@ La aplicación se conecta a una base de datos MySQL alojada en Railway, permitie
 ## 📸 Capturas del sistema
 
 ### 🏠 Página principal
-![Inicio]
+![Inicio](./Capturas/image.png)
 
-![alt text](image.png)
+---
 
-###  Listado de beneficiarios
+### 📋 Listado de beneficiarios
+![Beneficiarios](./Capturas/image-1.png)
 
-![alt text](image-1.png)
+---
 
+### 📊 Programas
+![Programas](./Capturas/image-2.png)
 
-###  Programas
+---
 
-![alt text](image-2.png)
+### 🏫 Instituciones
+![Instituciones](./Capturas/image-3.png)
 
+---
 
-### Instituciones
+### 📍 Localidades
+![Localidades](./Capturas/image-4.png)
 
-![alt text](image-3.png)
+---
 
-### Localidades
+### 📢 Convocatorias
+![Convocatorias](./Capturas/image-5.png)
 
-![alt text](image-4.png)
+---
 
-### Convocatorias
+### ♿ Discapacidades
+![Discapacidades](./Capturas/image-6.png)
 
-![alt text](image-5.png)
+---
 
-### Discapacidades
+### 🌎 Grupos Étnicos
+![Grupos Étnicos](./Capturas/image-7.png)
 
-![alt text](image-6.png)
+---
 
-### Grupos Etnicos
+### 🚻 Géneros
+![Géneros](./Capturas/image-8.png)
 
-![alt text](image-7.png)
+---
 
-### Generos
+### 🧾 SISBEN
+![SISBEN](./Capturas/image-9.png)
 
-![alt text](image-8.png)
+---
 
-### Sisben
-
-![alt text](image-9.png)
-
-### Edades
-
-![alt text](image-10.png)
+### 👶 Edades
+![Edades](./Capturas/image-10.png)
 
 ## 🚀 Funcionalidades
 
@@ -85,3 +91,4 @@ La aplicación se conecta a una base de datos MySQL alojada en Railway, permitie
 ## 👨‍💻 Autor
 
 Jhanpol Parra Barreto - Desarrollo de software
+ADSO SENA
