@@ -1,0 +1,98 @@
+'use client';
+import { useState, useEffect } from 'react';
+import s from '../shared.module.css';
+
+export default function SexosPage() {
+  const [datos, setDatos]       = useState([]);
+  const [nombre, setNombre]     = useState('');
+  const [msg, setMsg]           = useState({ texto: '', tipo: '' });
+  const [cargando, setCargando] = useState(true);
+
+  const cargar = () => {
+    setCargando(true);
+    fetch('/api/sexos')
+      .then((r) => r.json())
+      .then((d) => { setDatos(Array.isArray(d) ? d : []); setCargando(false); })
+      .catch(() => { mostrarMsg('Error al cargar datos', 'error'); setCargando(false); });
+  };
+
+  const mostrarMsg = (texto, tipo) => {
+    setMsg({ texto, tipo });
+    setTimeout(() => setMsg({ texto: '', tipo: '' }), 3000);
+  };
+
+  useEffect(() => { cargar(); }, []);
+
+  const agregar = async (e) => {
+    e.preventDefault();
+    if (!nombre.trim()) return mostrarMsg('El nombre no puede estar vacío', 'error');
+    const res = await fetch('/api/sexos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ NOMBRE_SEXO: nombre }),
+    });
+    if (res.ok) {
+      mostrarMsg('Registro agregado con éxito ✓', 'success');
+      setNombre('');
+      cargar();
+    } else {
+      mostrarMsg('Error al agregar el registro', 'error');
+    }
+  };
+
+  return (
+    <div className={s.container}>
+      <div className={s.header}>
+        <h1>Géneros / Sexo</h1>
+        <span className={`${s.badge} ${s.badgeGreen}`}>Insertar</span>
+        <span className={s.qty}>{datos.length} registros</span>
+      </div>
+
+      {msg.texto && (
+        <div className={`${s.msg} ${msg.tipo === 'success' ? s.msgSuccess : s.msgError}`}>
+          {msg.texto}
+        </div>
+      )}
+
+      <form onSubmit={agregar} className={s.form}>
+        <input
+          className={s.input}
+          placeholder="Nombre del género (Ej: No binario)"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          required
+        />
+        <button type="submit" className={`${s.btn} ${s.btnSuccess}`}>
+          + Agregar Género
+        </button>
+      </form>
+
+      {cargando ? (
+        <div className={`${s.msg} ${s.msgInfo}`}>Cargando datos...</div>
+      ) : (
+        <div className={s.tableWrapper}>
+          <table className={s.table}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre del Género</th>
+              </tr>
+            </thead>
+            <tbody>
+              {datos.length === 0 ? (
+                <tr><td colSpan={2} className={s.empty}>Sin registros</td></tr>
+              ) : (
+                datos.map((item) => (
+                  <tr key={item.ID_SEXO}>
+                    <td>{item.ID_SEXO}</td>
+                    <td>{item.NOMBRE_SEXO}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
