@@ -5,7 +5,7 @@ import styles from './page.module.css';
 const secciones = [
   {
     titulo: ' Consultas',
-    color: '#2f4d9e',
+    color: '#2f9e44',
     bg: '#d3f9d8',
     items: [
       { label: 'Beneficiarios', href: '/beneficiarios', desc: 'Listado completo de los beneficiarios' },
