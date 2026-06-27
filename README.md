@@ -90,5 +90,5 @@ La aplicación se conecta a una base de datos MySQL alojada en Railway, permitie
 
 ## 👨‍💻 Autor
 
-Jhanpol Parra Barreto - Desarrollo de software
-ADSO SENA
+Jhanpol Parra Barreto - Desarrollador de Software
+Developer Full Stack
